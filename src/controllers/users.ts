@@ -7,7 +7,9 @@ export const getAllUsers = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({
+    include: { cars: true },
+  });
   res.json(users);
 };
 
@@ -31,6 +33,17 @@ export const createUser = async (
     },
   });
   res.json(user);
+};
+
+export const createManyUsers = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { userList } = req.body;
+  const users = await prisma.user.createMany({
+    data: userList,
+  });
+  res.json(users);
 };
 
 export const updateUser = async (

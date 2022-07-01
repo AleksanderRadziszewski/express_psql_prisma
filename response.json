@@ -1,0 +1,40 @@
+[
+    {
+        "id": 4,
+        "username": "Bartek",
+        "password": "duzy",
+        "cars": [
+            {
+                "id": 1,
+                "model": "Tesla",
+                "year": 2020,
+                "userId": 4
+            },
+            {
+                "id": 2,
+                "model": "BMW",
+                "year": 2000,
+                "userId": 4
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "username": "Alex",
+        "password": "duzy",
+        "cars": [
+            {
+                "id": 3,
+                "model": "Ferrari",
+                "year": 2022,
+                "userId": 5
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "username": "Adrian",
+        "password": "duzy",
+        "cars": []
+    }
+]

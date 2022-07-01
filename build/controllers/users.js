@@ -9,11 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.getAllUsers = void 0;
+exports.deleteUser = exports.updateUser = exports.createManyUsers = exports.createUser = exports.getUser = exports.getAllUsers = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield prisma.user.findMany();
+    const users = yield prisma.user.findMany({
+        include: { cars: true },
+    });
     res.json(users);
 });
 exports.getAllUsers = getAllUsers;
@@ -36,6 +38,14 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     res.json(user);
 });
 exports.createUser = createUser;
+const createManyUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userList } = req.body;
+    const users = yield prisma.user.createMany({
+        data: userList,
+    });
+    res.json(users);
+});
+exports.createManyUsers = createManyUsers;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const { username } = req.body;
